@@ -230,55 +230,40 @@ void ubahBuku() {
     }
 
     cout << "\n=== Ubah Data Buku ===" << endl;
-    cout << "(Kosongkan input lalu tekan ENTER untuk skip)" << endl;
+    cout << "(Kosongkan input untuk skip)" << endl;
 
     char buffer[MAX_BUFFER];
 
-    // 🔹 Judul
-    cout << "Judul baru [" << target->judul << "]: ";
-    cin.ignore(); // penting supaya getline tidak ke-skip
-    cin.getline(buffer, MAX_BUFFER);
+    // ❌ JANGAN ADA cin.ignore DI SINI
 
+    // ===== Judul =====
+    cout << "Judul baru [" << target->judul << "]: ";
+    cin.getline(buffer, MAX_BUFFER);
     if (strlen(buffer) > 0) {
-        if (strlen(buffer) >= MAX_JUDUL) {
-            cout << "  Judul terlalu panjang, maks " << (MAX_JUDUL - 1) << " karakter. Tidak diubah." << endl;
-        } else {
-            strcpy(target->judul, buffer);
-        }
+        strcpy(target->judul, buffer);
     }
 
-    // 🔹 Pengarang
+    // ===== Pengarang =====
     cout << "Pengarang baru [" << target->author << "]: ";
     cin.getline(buffer, MAX_BUFFER);
-
     if (strlen(buffer) > 0) {
-        if (strlen(buffer) >= MAX_AUTHOR) {
-            cout << "  Pengarang terlalu panjang, maks " << (MAX_AUTHOR - 1) << " karakter. Tidak diubah." << endl;
-        } else {
-            strcpy(target->author, buffer);
-        }
+        strcpy(target->author, buffer);
     }
 
-    // 🔹 Tahun (pakai string dulu biar bisa kosong)
+    // ===== Tahun =====
     cout << "Tahun terbit baru [" << target->tahunTerbit << "]: ";
     cin.getline(buffer, MAX_BUFFER);
-
     if (strlen(buffer) > 0) {
         int thn = atoi(buffer);
-        target->tahunTerbit = thn;
+        if (thn > 0) target->tahunTerbit = thn;
     }
 
-    // 🔹 Stok
+    // ===== Stok =====
     cout << "Stok baru [" << target->stok << "]: ";
     cin.getline(buffer, MAX_BUFFER);
-
     if (strlen(buffer) > 0) {
         int s = atoi(buffer);
-        if (s < 0) {
-            cout << "  Stok tidak boleh negatif. Tidak diubah." << endl;
-        } else {
-            target->stok = s;
-        }
+        if (s >= 0) target->stok = s;
     }
 
     cout << "Data buku berhasil diubah!" << endl;
