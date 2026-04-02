@@ -218,6 +218,7 @@ void ubahBuku() {
         cout << "\nBelum ada data buku." << endl;
         return;
     }
+
     tampilkanBuku();
 
     int pilih = inputIntUnbound("Pilih nomor buku yang ingin diubah: ", 1);
@@ -229,12 +230,16 @@ void ubahBuku() {
     }
 
     cout << "\n=== Ubah Data Buku ===" << endl;
-    cout << "(Kosongkan jika tidak ingin mengubah, ketik '-' lalu enter)" << endl;
+    cout << "(Kosongkan input lalu tekan ENTER untuk skip)" << endl;
 
     char buffer[MAX_BUFFER];
+
+    // 🔹 Judul
     cout << "Judul baru [" << target->judul << "]: ";
+    cin.ignore(); // penting supaya getline tidak ke-skip
     cin.getline(buffer, MAX_BUFFER);
-    if (strcmp(buffer, "-") != 0 && strlen(buffer) > 0) {
+
+    if (strlen(buffer) > 0) {
         if (strlen(buffer) >= MAX_JUDUL) {
             cout << "  Judul terlalu panjang, maks " << (MAX_JUDUL - 1) << " karakter. Tidak diubah." << endl;
         } else {
@@ -242,9 +247,11 @@ void ubahBuku() {
         }
     }
 
+    // 🔹 Pengarang
     cout << "Pengarang baru [" << target->author << "]: ";
     cin.getline(buffer, MAX_BUFFER);
-    if (strcmp(buffer, "-") != 0 && strlen(buffer) > 0) {
+
+    if (strlen(buffer) > 0) {
         if (strlen(buffer) >= MAX_AUTHOR) {
             cout << "  Pengarang terlalu panjang, maks " << (MAX_AUTHOR - 1) << " karakter. Tidak diubah." << endl;
         } else {
@@ -252,14 +259,21 @@ void ubahBuku() {
         }
     }
 
-    // Fix: skip menggunakan -1 konsisten, bukan 0
-    cout << "Tahun terbit baru [" << target->tahunTerbit << "] (-1 = skip): ";
-    int thn = inputIntUnbound("", 1);
-    if (thn != -1) target->tahunTerbit = thn;
+    // 🔹 Tahun (pakai string dulu biar bisa kosong)
+    cout << "Tahun terbit baru [" << target->tahunTerbit << "]: ";
+    cin.getline(buffer, MAX_BUFFER);
 
-    cout << "Stok baru [" << target->stok << "] (-1 = skip): ";
-    int s = inputInt("", 0, 9999, -1);
-    if (s != -1) {
+    if (strlen(buffer) > 0) {
+        int thn = atoi(buffer);
+        target->tahunTerbit = thn;
+    }
+
+    // 🔹 Stok
+    cout << "Stok baru [" << target->stok << "]: ";
+    cin.getline(buffer, MAX_BUFFER);
+
+    if (strlen(buffer) > 0) {
+        int s = atoi(buffer);
         if (s < 0) {
             cout << "  Stok tidak boleh negatif. Tidak diubah." << endl;
         } else {
