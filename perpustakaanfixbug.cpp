@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <limits>
+#include <cctype>
 using namespace std;
 
 // ============ KONSTANTA UKURAN BUFFER ============
