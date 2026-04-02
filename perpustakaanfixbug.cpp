@@ -234,41 +234,28 @@ void ubahBuku() {
 
     char buffer[MAX_BUFFER];
 
-    // ⚠️ PENTING: bersihkan newline dari input sebelumnya
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    // ❌ JANGAN ADA cin.ignore DI SINI
 
     // ===== Judul =====
     cout << "Judul baru [" << target->judul << "]: ";
     cin.getline(buffer, MAX_BUFFER);
     if (strlen(buffer) > 0) {
-        if (strlen(buffer) >= MAX_JUDUL) {
-            cout << "  Judul terlalu panjang. Tidak diubah." << endl;
-        } else {
-            strcpy(target->judul, buffer);
-        }
+        strcpy(target->judul, buffer);
     }
 
     // ===== Pengarang =====
     cout << "Pengarang baru [" << target->author << "]: ";
     cin.getline(buffer, MAX_BUFFER);
     if (strlen(buffer) > 0) {
-        if (strlen(buffer) >= MAX_AUTHOR) {
-            cout << "  Pengarang terlalu panjang. Tidak diubah." << endl;
-        } else {
-            strcpy(target->author, buffer);
-        }
+        strcpy(target->author, buffer);
     }
 
-    // ===== Tahun Terbit =====
+    // ===== Tahun =====
     cout << "Tahun terbit baru [" << target->tahunTerbit << "]: ";
     cin.getline(buffer, MAX_BUFFER);
     if (strlen(buffer) > 0) {
         int thn = atoi(buffer);
-        if (thn > 0) {
-            target->tahunTerbit = thn;
-        } else {
-            cout << "  Input tidak valid. Tidak diubah." << endl;
-        }
+        if (thn > 0) target->tahunTerbit = thn;
     }
 
     // ===== Stok =====
@@ -276,11 +263,7 @@ void ubahBuku() {
     cin.getline(buffer, MAX_BUFFER);
     if (strlen(buffer) > 0) {
         int s = atoi(buffer);
-        if (s >= 0) {
-            target->stok = s;
-        } else {
-            cout << "  Stok tidak boleh negatif. Tidak diubah." << endl;
-        }
+        if (s >= 0) target->stok = s;
     }
 
     cout << "Data buku berhasil diubah!" << endl;
