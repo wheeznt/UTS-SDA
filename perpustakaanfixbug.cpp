@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <limits>
+#include <cctype>
 using namespace std;
 
 // ============ KONSTANTA UKURAN BUFFER ============
@@ -234,8 +235,6 @@ void ubahBuku() {
 
     char buffer[MAX_BUFFER];
 
-    // ❌ JANGAN ADA cin.ignore DI SINI
-
     // ===== Judul =====
     cout << "Judul baru [" << target->judul << "]: ";
     cin.getline(buffer, MAX_BUFFER);
@@ -254,16 +253,42 @@ void ubahBuku() {
     cout << "Tahun terbit baru [" << target->tahunTerbit << "]: ";
     cin.getline(buffer, MAX_BUFFER);
     if (strlen(buffer) > 0) {
-        int thn = atoi(buffer);
-        if (thn > 0) target->tahunTerbit = thn;
+        bool valid = true;
+
+        for (int i = 0; i < strlen(buffer); i++) {
+            if (!isdigit(buffer[i])) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (valid) {
+            int thn = atoi(buffer);
+            if (thn > 0) target->tahunTerbit = thn;
+        } else {
+            cout << "  Input harus berupa angka! Tahun tidak diubah." << endl;
+        }
     }
 
     // ===== Stok =====
     cout << "Stok baru [" << target->stok << "]: ";
     cin.getline(buffer, MAX_BUFFER);
     if (strlen(buffer) > 0) {
-        int s = atoi(buffer);
-        if (s >= 0) target->stok = s;
+        bool valid = true;
+
+        for (int i = 0; i < strlen(buffer); i++) {
+            if (!isdigit(buffer[i])) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (valid) {
+            int s = atoi(buffer);
+            target->stok = s;
+        } else {
+            cout << "  Input harus berupa angka! Stok tidak diubah." << endl;
+        }
     }
 
     cout << "Data buku berhasil diubah!" << endl;
