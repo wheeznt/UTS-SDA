@@ -218,6 +218,7 @@ void ubahBuku() {
         cout << "\nBelum ada data buku." << endl;
         return;
     }
+
     tampilkanBuku();
 
     int pilih = inputIntUnbound("Pilih nomor buku yang ingin diubah: ", 1);
@@ -233,7 +234,7 @@ void ubahBuku() {
 
     char buffer[MAX_BUFFER];
 
-    // 🔥 BUANG sisa newline sebelum getline pertama
+    // ⚠️ PENTING: bersihkan newline dari input sebelumnya
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     // ===== Judul =====
