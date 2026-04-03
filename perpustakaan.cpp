@@ -2,33 +2,23 @@
 #include <cstring>
 using namespace std;
 
-// ============================================================
-//  SISTEM PERPUSTAKAAN SEDERHANA  |  RL216 Struktur Data
-//  Materi: Array, Struct, Pointer, Single & Double Linked List
-// ============================================================
-
 const int MAX_MAHASISWA = 5;
 
-// --- Single Linked List: node peminjaman per mahasiswa ---
 struct Peminjaman {
     char judul[100];
     Peminjaman* next;
 };
 
-// --- Array of Struct: data akun mahasiswa ---
 struct Mahasiswa {
     char nim[20], nama[50], password[30];
     Peminjaman* daftarPinjam;
 };
 
-// --- Double Linked List: katalog buku ---
 struct Buku {
     char judul[100], pengarang[100];
     int  tahun, stok;
     Buku *prev, *next;
 };
-
-// ==================== VARIABEL GLOBAL ====================
 
 Mahasiswa dataMhs[MAX_MAHASISWA] = {
     {"2301001", "Januar Haykal", "pass123", NULL},
@@ -40,9 +30,8 @@ int jumlahMhs = 3;
 Buku* headBuku = NULL;
 Buku* tailBuku = NULL;
 
-// ==================== HELPER ====================
 
-// Input integer dengan validasi range, ulangi jika tidak valid
+// ini helper
 int inputInt(const char* prompt, int minVal, int maxVal) {
     int nilai;
     while (true) {
@@ -66,7 +55,6 @@ void inputString(const char* prompt, char* buffer, int maxLen) {
     }
 }
 
-// ==================== BUKU (Double Linked List) ====================
 
 void tambahBuku(const char* judul, const char* pengarang, int tahun, int stok) {
     Buku* b = new Buku;
@@ -109,7 +97,6 @@ Buku* cariBukuByNomor(int nomor) {
     return curr;
 }
 
-// ==================== PEMINJAMAN (Single Linked List) ====================
 
 void lihatPinjaman(Mahasiswa* mhs) {
     cout << "\n=== Buku yang Kamu Pinjam ===\n";
@@ -183,8 +170,6 @@ void donasiBuku() {
     cout << "Buku \"" << judul << "\" berhasil didonasikan!\n";
 }
 
-// ==================== LOGIN ====================
-
 Mahasiswa* login() {
     char nim[20], pw[30];
     cout << "\n=== Login Mahasiswa ===\n";
@@ -201,7 +186,6 @@ Mahasiswa* login() {
     return NULL;
 }
 
-// ==================== MENU ====================
 
 void menuMahasiswa(Mahasiswa* mhs) {
     int pilih;
@@ -229,8 +213,6 @@ void menuMahasiswa(Mahasiswa* mhs) {
         }
     } while (pilih != 0);
 }
-
-// ==================== MAIN ====================
 
 int main() {
     inisialisasiDataBuku();
