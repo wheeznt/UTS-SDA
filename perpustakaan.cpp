@@ -21,9 +21,9 @@ struct Buku {
 };
 
 Mahasiswa dataMhs[MAX_MAHASISWA] = {
-    {"2301001", "Januar Haykal", "pass123", NULL},
-    {"2301002", "Siti Aisyah",   "siti456", NULL},
-    {"2301003", "Budi Santoso",  "budi789", NULL},
+    {"2508627", "Januar Haykal", "pass123", NULL},
+    {"2507821", "Azka Athallah",   "aska123", NULL},
+    {"2506208", "Firdaus Akmal",  "daus123", NULL},
 };
 int jumlahMhs = 3;
 
@@ -65,11 +65,11 @@ void tambahBuku(const char* judul, const char* pengarang, int tahun, int stok) {
 }
 
 void inisialisasiDataBuku() {
-    tambahBuku("Pemrograman C++",           "Bjarne Stroustrup", 2020, 3);
-    tambahBuku("Struktur Data",             "Mark Allen Weiss",  2019, 2);
-    tambahBuku("Algoritma dan Pemrograman", "Rinaldi Munir",     2021, 4);
-    tambahBuku("Basis Data",                "Ramez Elmasri",     2018, 2);
-    tambahBuku("Rekayasa Perangkat Lunak",  "Ian Sommerville",   2022, 1);
+    tambahBuku("Pemrograman C++",                                   "Yulia Retnowati, S.Pd., M.T.",         2020, 3);
+    tambahBuku("Struktur Data",                                     "Yulia Retnowati, S.Pd., M.T.",         2019, 2);
+    tambahBuku("Landasan Antropologis dan Sosiologis Pendidikan",   "Yusuf Tri Herlambang, S.Pd., M.Pd.",   2021, 4);
+    tambahBuku("Pendidikan Kewarganegaraan",                        "Yayang Furi Furnamasari, M.Pd.",       2018, 2);
+    tambahBuku("Membuat Bagan dengan Mudah",                        "Dr. Agus Mulyana, M.Pd.",              2022, 1);
 }
 
 void tampilkanBuku() {
