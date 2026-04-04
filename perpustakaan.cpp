@@ -51,7 +51,7 @@ void inputString(const char* prompt, char* buffer, int maxLen) {
         cout << prompt;
         cin.getline(buffer, maxLen);
         if (strlen(buffer) > 0) break;
-        cout << "  Input tidak boleh kosong! Coba lagi.\n";
+        cout << "   Input tidak boleh kosong! Coba lagi.\n";
     }
 }
 
